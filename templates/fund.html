@@ -1,0 +1,24 @@
+<h1>Fund ID: {{ fund.raw.get("cfFundId", "") }}</h1>
+<strong>Amount: {{ fund.amount() }}</strong><br>
+Dates: {{ fund.start() }} - {{ fund.end() }}
+
+<h2>Organisations</h2>
+
+<ul>
+{% for org in fund.orgs() %}
+    <li><a href="/org/{{ org }}">{{ org }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Projects</h2>
+
+<ul>
+{% for proj in fund.projects() %}
+    <li><a href="/project/{{ proj }}">{{ proj }}</a></li>
+{% endfor %}
+</ul>
+
+<hr>
+<pre>
+{{ fund.json() }}
+</pre>

@@ -1,0 +1,32 @@
+<h1>{{ person.name() }}</h1>
+Person ID: {{ person.id() }}
+
+<h2>Projects</h2>
+
+{% for project in person.projects() %}
+    <h3><a href="/project/{{ project.id() }}">{{ project.title() }}</a></h3>
+    led by:<br>
+    <ul>
+    {% for org_id, org in project.lead() %}
+        <li><a href="/org/{{ org_id }}">{{ org }}</a></li>
+    {% endfor %}
+    </ul>
+    with all partner orgs:<br>
+    <ul>
+    {% for org_id, org in project.orgs() %}
+        <li><a href="/org/{{ org_id }}">{{ org }}</a></li>
+    {% endfor %}
+    </ul>
+    and people:<br>
+    <ul>
+    {% for pers_id, pers in project.people() %}
+        <li><a href="/person/{{ pers_id }}">{{ pers }}</a></li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+<hr>
+
+<pre>
+{{ person.xml() }}
+</pre>

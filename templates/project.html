@@ -1,0 +1,43 @@
+<h1>{{ project.title() }}</h1>
+Project ID: {{ project.id() }}<br/>
+Dates: {{ project.start() }} - {{ project.end() }}<br/>
+Funder: {{ project.funder() }}<br/>
+Value: {{ project.value() }}<br/>
+Grant Category: {{ project.category() }}<br>
+Grant Reference: {{ project.reference() }}
+<p>{{ project.abstract() }}</p>
+
+<h2>Organisations</h2>
+
+<strong>Lead</strong>:
+{% for org_id, org in project.lead() %}
+    <a href="/org/{{ org_id }}">{{ org }}</a>&nbsp;
+{% endfor %}
+
+<ul>
+{% for org_id, org in project.orgs() %}
+    <li><a href="/org/{{ org_id }}">{{ org }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>People</h2>
+
+<ul>
+{% for pers_id, pers in project.people() %}
+    <li><a href="/person/{{ pers_id }}">{{ pers }}</a></li>
+{% endfor %}
+</ul>
+
+<h3>Outputs</h3>
+
+<ul>
+{% for out in project.outputs() %}
+    <li>{{ out }}</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<pre>
+{{ project.xml() }}
+</pre>
